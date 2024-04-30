@@ -68,16 +68,10 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   // Contrôleur unique pour gérer les événements d'entrée
-  document.querySelector("form").addEventListener("input", (event) => {
-    const unit = event.target.id;
-    const value = event.target.value;
-    if (value === '') {
-      // Réinitialiser les valeurs si le champ est vide
-      view.inputs.forEach(input => input.value = '');
-    } else {
-      distance[unit] = value;
-      view.show();
-    }
+  document.addEventListener("input", () => {
+    view.inputs.forEach(input => {
+      distance[input.id] = input.value;
+    });
   });
 
   // Initialiser la vue avec la distance par défaut
